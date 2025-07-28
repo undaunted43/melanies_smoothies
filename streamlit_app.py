@@ -25,7 +25,13 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT
 #st.dataframe(data=my_dataframe, use_container_width=True)
 name_on_order = st.text_input("Name on smoothie")
 st.write("The name on your smoothie will be: ", name_on_order)
-ingredient_list = st.multiselect("Choose up to five ingredients:", my_dataframe, max_selections=5)
+# Convert Snowpark DataFrame to Python list
+fruit_list = [row["FRUIT_NAME"] for row in my_dataframe.collect()]
+
+# Multiselect from the list
+ingredient_list = st.multiselect("Choose up to five ingredients:", fruit_list, max_selections=5)
+
+#ingredient_list = st.multiselect("Choose up to five ingredients:", my_dataframe, max_selections=5)
 if ingredient_list:
     st.write(ingredient_list)
     st.text(ingredient_list)
