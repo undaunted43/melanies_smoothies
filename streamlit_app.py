@@ -32,8 +32,10 @@ try:
     if ingredient_list:
         st.write("Selected ingredients:", ingredient_list)
         ingredients_string = ' '.join(ingredient_list)
-        smoothiefroot_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        for fruit_chosen in ingredient_list:
+            st.subheader(fruit_chosen+' Nutrion Information')
+            smoothiefroot_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_chosen)
+            sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
         # Prepare SQL insert statement
         my_insert_stmt = f"""
