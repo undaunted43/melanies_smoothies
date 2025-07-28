@@ -29,13 +29,11 @@ try:
     # UI: Multi-select fruit ingredients
     ingredient_list = st.multiselect("Choose up to five ingredients:", fruit_list, max_selections=5)
 
-    smoothiefroot_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-    #st.text(smoothiefroot_response.json())
-    sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-
     if ingredient_list:
         st.write("Selected ingredients:", ingredient_list)
         ingredients_string = ' '.join(ingredient_list)
+        smoothiefroot_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
         # Prepare SQL insert statement
         my_insert_stmt = f"""
