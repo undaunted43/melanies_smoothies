@@ -1,6 +1,8 @@
 # Import Python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
+import requests
+
 
 # Connect to Snowflake
 cnx = st.connection("snowflake", type="snowflake")
@@ -18,6 +20,9 @@ st.write("Choose the fruits you want in your custom Smoothie!")
 # Input: Name on the smoothie
 name_on_order = st.text_input("Name on smoothie")
 st.write("The name on your smoothie will be: ", name_on_order)
+
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
 
 # Fetch fruit options from Snowflake
 try:
