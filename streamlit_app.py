@@ -30,7 +30,7 @@ try:
     ingredient_list = st.multiselect("Choose up to five ingredients:", fruit_list, max_selections=5)
 
     if ingredient_list:
-        st.write("Selected ingredients:", ingredient_list)
+        #st.write("Selected ingredients:", ingredient_list)
         ingredients_string = ' '.join(ingredient_list)
         for fruit_chosen in ingredient_list:
             st.subheader(fruit_chosen+' Nutrion Information')
