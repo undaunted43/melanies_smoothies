@@ -23,7 +23,7 @@ st.write("The name on your smoothie will be: ", name_on_order)
 
 # Fetch fruit options from Snowflake
 try:
-    my_dataframe = session.table("fruit_options").select(col("FRUIT_NAME"))
+    my_dataframe = session.table("fruit_options").select(col("FRUIT_NAME"), col("SEARCH_ON"))
     fruit_list = [row["FRUIT_NAME"] for row in my_dataframe.collect()]
 
     # UI: Multi-select fruit ingredients
