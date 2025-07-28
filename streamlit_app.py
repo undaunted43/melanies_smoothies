@@ -26,8 +26,8 @@ st.write("The name on your smoothie will be: ", name_on_order)
 try:
     my_dataframe = session.table("fruit_options").select(col("FRUIT_NAME"), col("SEARCH_ON"))
     pd_df = my_dataframe.to_pandas()
-    st.dataframe(pd_df)
-    st.stop()
+    #st.dataframe(pd_df)
+    #st.stop()
     fruit_list = [row["FRUIT_NAME"] for row in my_dataframe.collect()]
 
     # UI: Multi-select fruit ingredients
