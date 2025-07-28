@@ -21,9 +21,6 @@ st.write("Choose the fruits you want in your custom Smoothie!")
 name_on_order = st.text_input("Name on smoothie")
 st.write("The name on your smoothie will be: ", name_on_order)
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
-
 # Fetch fruit options from Snowflake
 try:
     my_dataframe = session.table("fruit_options").select(col("FRUIT_NAME"))
@@ -31,6 +28,9 @@ try:
 
     # UI: Multi-select fruit ingredients
     ingredient_list = st.multiselect("Choose up to five ingredients:", fruit_list, max_selections=5)
+
+    smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+    st.text(smoothiefroot_response)
 
     if ingredient_list:
         st.write("Selected ingredients:", ingredient_list)
