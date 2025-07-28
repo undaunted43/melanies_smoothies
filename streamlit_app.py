@@ -9,6 +9,7 @@ session = cnx.session()
 # Set the correct database and schema (important if default context is wrong)
 session.use_database("smoothies")
 session.use_schema("public")
+session.use_warehouse("compute_wh")
 
 # UI: Title and instructions
 st.title(f":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
